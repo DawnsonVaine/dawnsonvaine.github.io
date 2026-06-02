@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dawnson Vaine - Software Developer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 1px solid #e1e5e9;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            background-color: #6c757d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .profile-info h1 {
+            font-size: 2.2em;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .profile-info .role {
+            font-size: 1.1em;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+
+        .profile-info p {
+            color: #586069;
+            font-size: 0.95em;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e1e5e9;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .contact-item a { color: #0366d6; text-decoration: none; }
+        .contact-item a:hover { text-decoration: underline; }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #e1e5e9;
+        }
+
+        .section h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: #fafbfc;
+            border: 1px solid #d1d9e0;
+            border-radius: 6px;
+            padding: 24px;
+            transition: box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+
+        .project-card.in-progress {
+            border-style: dashed;
+            background-color: #f6f8fa;
+        }
+
+        .project-header { margin-bottom: 12px; }
+
+        .project-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+
+        .project-subtitle {
+            color: #0366d6;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 500;
+            margin-left: 6px;
+        }
+
+        .project-description {
+            color: #586069;
+            margin-bottom: 16px;
+            line-height: 1.5;
+            font-size: 0.9em;
+            flex-grow: 1;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .tech-item {
+            background-color: #f1f8ff;
+            border: 1px solid #c8e1ff;
+            color: #0366d6;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.78em;
+            font-weight: 500;
+        }
+
+        .project-footer {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid #e1e5e9;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 5px 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 500;
+            border: 1px solid;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: #0366d6;
+            color: white;
+            border-color: #0366d6;
+        }
+
+        .btn-primary:hover { background-color: #0256cc; }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #0366d6;
+            border-color: #0366d6;
+        }
+
+        .btn-outline:hover { background-color: #f1f8ff; }
+
+        .unavailable {
+            color: #6c757d;
+            font-size: 0.85em;
+            font-style: italic;
+        }
+
+        /* Featured project detail */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .feature-box {
+            background: #fafbfc;
+            border: 1px solid #e1e5e9;
+            border-radius: 6px;
+            padding: 16px;
+        }
+
+        .feature-box h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        .feature-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-box ul li {
+            padding: 3px 0;
+            color: #586069;
+            font-size: 0.88em;
+            border-bottom: 1px solid #eaecef;
+        }
+
+        .feature-box ul li:last-child { border-bottom: none; }
+
+        .code-block {
+            background-color: #f6f8fa;
+            border-left: 4px solid #0366d6;
+            padding: 16px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+
+        .code-block .comment { color: #6a737d; margin-bottom: 6px; }
+        .code-block .code { color: #333; }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-group {
+            background: #fafbfc;
+            border: 1px solid #e1e5e9;
+            border-radius: 6px;
+            padding: 16px;
+        }
+
+        .skill-group h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .skill-group ul { list-style: none; }
+
+        .skill-group ul li {
+            padding: 4px 0;
+            color: #586069;
+            font-size: 0.9em;
+            border-bottom: 1px solid #eaecef;
+        }
+
+        .skill-group ul li:last-child { border-bottom: none; }
+
+        /* Achievement */
+        .achievement {
+            background: #fafbfc;
+            border: 1px solid #d1d9e0;
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .achievement-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .achievement-title {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .achievement-date {
+            color: #6c757d;
+            font-size: 0.85em;
+        }
+
+        .achievement p {
+            color: #586069;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        /* About */
+        .about-text {
+            color: #586069;
+            line-height: 1.7;
+        }
+
+        .about-text p { margin-bottom: 12px; }
+        .about-text p:last-child { margin-bottom: 0; }
+
+        @media (max-width: 768px) {
+            .profile-section { flex-direction: column; text-align: center; }
+            .projects-container { grid-template-columns: 1fr; }
+            header { padding: 25px; }
+            .profile-info h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <header>
+        <div class="profile-section">
+            <div class="profile-photo">DV</div>
+            <div class="profile-info">
+                <h1>Dawnson Vaine</h1>
+                <div class="role">Software Engineering Student | Graduating May 2026</div>
+                <p>Passionate about building software that solves real problems. Experienced across mobile development, web development, and database design. Currently developing a 3D multiplayer game in Unreal Engine 5 as a personal project.</p>
+            </div>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <span>📧</span>
+                <a href="mailto:vainedawnson@gmail.com">vainedawnson@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <span>📱</span>
+                <span>02108414468</span>
+            </div>
+            <div class="contact-item">
+                <span>📍</span>
+                <span>Auckland, New Zealand</span>
+            </div>
+            <div class="contact-item">
+                <span>🔗</span>
+                <a href="https://linkedin.com/in/dawnson-vaine" target="_blank">LinkedIn</a>
+            </div>
+            <div class="contact-item">
+                <span>💻</span>
+                <a href="https://github.com/DawnsonVaine" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About -->
+    <section class="section">
+        <h2>About Me</h2>
+        <div class="about-text">
+            <p>I'm a Software Engineering student at Open Polytechnic, graduating with a Bachelor of Information Technology in May 2026. My studies have taken me across full-stack web development, mobile application development, database design, and software engineering principles.</p>
+            <p>My most recent project, SquadUp, is a native Android gaming matchmaking app I built as my capstone project using React Native, Firebase, and TypeScript. I'm currently channelling my passion for gaming into building a 3D multiplayer volleyball game in Unreal Engine 5 with C++.</p>
+            <p>I bring a practical mindset developed through retail and logistics work experience, and I'm eager to contribute to a software development team as a junior developer or intern.</p>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section">
+        <h2>Projects</h2>
+        <div class="projects-container">
+
+            <!-- Volleyball Game -->
+            <div class="project-card in-progress">
+                <div class="project-header">
+                    <div class="project-title">3D Multiplayer Volleyball Game <span class="status-badge">In Progress</span></div>
+                    <div class="project-subtitle">Personal Project | 2026 – Present</div>
+                </div>
+                <div class="project-description">
+                    Arcade-style 3D volleyball game inspired by fast-paced team-based gameplay. Prototyped the full game loop in JavaScript/Three.js to validate mechanics, then rebuilt in Unreal Engine 5 with C++ using a deterministic kinematic physics system designed for future server-authoritative multiplayer.
+                </div>
+                <div class="tech-list">
+                    <span class="tech-item">Unreal Engine 5</span>
+                    <span class="tech-item">C++</span>
+                    <span class="tech-item">JavaScript</span>
+                    <span class="tech-item">Three.js</span>
+                </div>
+                <div class="project-footer">
+                    <span class="unavailable">GitHub coming soon</span>
+                </div>
+            </div>
+
+            <!-- SquadUp -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">SquadUp – Gaming Matchmaking App</div>
+                    <div class="project-subtitle">Capstone Project | 2025 – 2026</div>
+                </div>
+                <div class="project-description">
+                    Native Android app helping gamers find compatible long-term teammates based on shared games, skill level, playstyle, and availability. Features real-time messaging, a mutual matching system, and full user profile creation.
+                </div>
+                <div class="tech-list">
+                    <span class="tech-item">React Native</span>
+                    <span class="tech-item">Expo</span>
+                    <span class="tech-item">TypeScript</span>
+                    <span class="tech-item">Firebase</span>
+                    <span class="tech-item">Firestore</span>
+                    <span class="tech-item">AsyncStorage</span>
+                </div>
+                <div class="project-footer">
+                    <a href="https://github.com/DawnsonVaine/SquadUp" target="_blank" class="btn btn-primary">GitHub</a>
+                </div>
+            </div>
+
+            <!-- National Microchip Registry -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">National Microchip Registry</div>
+                    <div class="project-subtitle">Enterprise Application Development | 2025</div>
+                </div>
+                <div class="project-description">
+                    Enterprise-level desktop application for managing microchipped animals across veterinary clinics. Built using MVVM architecture with a full data, business, and UI layer separation. Includes user login, clinic management, microchip generation, animal record lookup, and role-based user administration.
+                </div>
+                <div class="tech-list">
+                    <span class="tech-item">C#</span>
+                    <span class="tech-item">.NET</span>
+                    <span class="tech-item">Entity Framework</span>
+                    <span class="tech-item">MVVM</span>
+                    <span class="tech-item">SQLite</span>
+                    <span class="tech-item">Unit Testing</span>
+                </div>
+                <div class="project-footer">
+                    <a href="https://github.com/DawnsonVaine/National-Microchip-Registry" target="_blank" class="btn btn-primary">GitHub</a>
+                </div>
+            </div>
+
+            <!-- Haukai Restaurant -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Haukai Restaurant Website</div>
+                    <div class="project-subtitle">Frontend Web Development | 2025</div>
+                </div>
+                <div class="project-description">
+                    Multi-page responsive website for a Māori restaurant in the Bay of Islands. Features a custom hamburger navigation menu, full food and beverage menu, Google Forms reservation system, embedded calendar for opening hours, Google Maps integration, and a private staff portal with roster and contact information.
+                </div>
+                <div class="tech-list">
+                    <span class="tech-item">HTML5</span>
+                    <span class="tech-item">CSS3</span>
+                    <span class="tech-item">JavaScript</span>
+                    <span class="tech-item">Responsive Design</span>
+                    <span class="tech-item">Google Maps API</span>
+                </div>
+                <div class="project-footer">
+                    <span class="unavailable">Code samples available upon request</span>
+                </div>
+            </div>
+
+            <!-- Dairy Farm Database -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Dairy Farm Management Database</div>
+                    <div class="project-subtitle">Database Design & Development | 2025</div>
+                </div>
+                <div class="project-description">
+                    Enterprise relational database system managing employees, livestock, production records, and health data. Implemented role-based access control with a three-tier user hierarchy and complex multi-table SQL queries for reporting and analytics.
+                </div>
+                <div class="tech-list">
+                    <span class="tech-item">MySQL</span>
+                    <span class="tech-item">SQL</span>
+                    <span class="tech-item">Database Design</span>
+                    <span class="tech-item">RBAC</span>
+                </div>
+                <div class="project-footer">
+                    <span class="unavailable">Documentation available upon request</span>
+                </div>
+            </div>
+
+            <!-- Web Programming -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">E-Commerce Admin Dashboard</div>
+                    <div class="project-subtitle">Server-Side Web Development | 2025</div>
+                </div>
+                <div class="project-description">
+                    Full e-commerce admin system with secure session-based authentication, login timeout handling, and protected routes. Features complete product and category management with a live dashboard displaying real-time statistics pulled dynamically from MySQL.
+                </div>
+                <div class="tech-list">
+                    <span class="tech-item">PHP</span>
+                    <span class="tech-item">MySQL</span>
+                    <span class="tech-item">PDO</span>
+                    <span class="tech-item">Bootstrap</span>
+                    <span class="tech-item">HTML/CSS</span>
+                    <span class="tech-item">JavaScript</span>
+                </div>
+                <div class="project-footer">
+                    <span class="unavailable">Code samples available upon request</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Featured Project Detail -->
+    <section class="section">
+        <h2>Featured: Dairy Farm Management Database</h2>
+        <p style="color:#586069; margin-bottom:20px;">A closer look at the technical architecture and implementation of this database project.</p>
+
+        <div class="feature-grid">
+            <div class="feature-box">
+                <h4>Database Architecture</h4>
+                <ul>
+                    <li>9 normalized tables</li>
+                    <li>Employee hierarchy structure</li>
+                    <li>Livestock & breed tracking</li>
+                    <li>Production & health records</li>
+                    <li>Task & time management</li>
+                </ul>
+            </div>
+            <div class="feature-box">
+                <h4>Advanced SQL</h4>
+                <ul>
+                    <li>Multi-table JOIN operations</li>
+                    <li>Aggregation & grouping</li>
+                    <li>Date-based reporting</li>
+                    <li>Self-referencing foreign keys</li>
+                    <li>Conditional logic & validation</li>
+                </ul>
+            </div>
+            <div class="feature-box">
+                <h4>Security & Access Control</h4>
+                <ul>
+                    <li>Role-based permissions (RBAC)</li>
+                    <li>Three-tier user hierarchy</li>
+                    <li>Table-level privileges</li>
+                    <li>User creation & management</li>
+                    <li>Data integrity enforcement</li>
+                </ul>
+            </div>
+            <div class="feature-box">
+                <h4>Technical Highlights</h4>
+                <ul>
+                    <li>BLOB multimedia storage</li>
+                    <li>XML data handling</li>
+                    <li>Calculated metric reporting</li>
+                    <li>Modification tracking</li>
+                    <li>Constraint enforcement</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="code-block">
+            <div class="comment">-- Complex reporting query with multiple JOINs and aggregation:</div>
+            <div class="code">
+                SELECT e.firstname, e.lastname,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;COUNT(DISTINCT me.tagNumber) AS cows_milked,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;ROUND(SUM(me.yield), 2) AS total_production<br>
+                FROM Employee e<br>
+                JOIN Milk_Employee me ON e.employeeID = me.employeeID<br>
+                WHERE e.jobTitle = 'Farm Assistant'<br>
+                GROUP BY e.employeeID<br>
+                ORDER BY total_production DESC;
+            </div>
+        </div>
+
+        <p style="color:#586069; font-size:0.9em;"><strong>Business Applications:</strong> Skills demonstrated here apply directly to user management systems, inventory tracking, performance analytics, and secure data access across industries including technology, e-commerce, and enterprise software.</p>
+    </section>
+
+    <!-- Skills -->
+    <section class="section">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-group">
+                <h3>Languages</h3>
+                <ul>
+                    <li>JavaScript / TypeScript</li>
+                    <li>C++</li>
+                    <li>SQL</li>
+                    <li>HTML / CSS</li>
+                    <li>PHP</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <h3>Mobile & Game Dev</h3>
+                <ul>
+                    <li>React Native & Expo</li>
+                    <li>Unreal Engine 5</li>
+                    <li>Android Studio</li>
+                    <li>Three.js</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <h3>Backend & Database</h3>
+                <ul>
+                    <li>Firebase & Firestore</li>
+                    <li>MySQL</li>
+                    <li>PHP Backend</li>
+                    <li>Database Design</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <h3>Tools & Concepts</h3>
+                <ul>
+                    <li>Git & GitHub</li>
+                    <li>OOP Principles</li>
+                    <li>CRUD & REST APIs</li>
+                    <li>Role-Based Access Control</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievement -->
+    <section class="section">
+        <h2>Achievements</h2>
+        <div class="achievement">
+            <div class="achievement-header">
+                <div class="achievement-title">🏆 3rd Place – Rea Hackathon</div>
+                <div class="achievement-date">2022</div>
+            </div>
+            <p>Competed in a weekend hackathon as part of a team, responding to a real industry brief from a CEO in the medical sector. Designed and built prototype web pages demonstrating a healthcare appointment and live queue system, then pitched the concept to a CEO judge — placing 3rd out of 7 teams.</p>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section">
+        <h2>Education</h2>
+        <div class="about-text">
+            <p><strong style="color:#2c3e50;">Bachelor of Information Technology (Software Engineering)</strong><br>
+            <span style="color:#0366d6;">Open Polytechnic</span> | Expected May 2026</p>
+            <br>
+            <p><strong style="color:#2c3e50;">New Zealand Certificate in Information Technology – Level 5</strong><br>
+            <span style="color:#0366d6;">Open Polytechnic</span> | 2022 – 2024</p>
+            <br>
+            <p><strong style="color:#2c3e50;">Information Technology Essentials – Level 4</strong><br>
+            <span style="color:#0366d6;">Manukau Institute of Technology</span> | 2020</p>
+            <br>
+            <p><strong style="color:#2c3e50;">NZQA Certificate in Creative Media – Level 4</strong><br>
+            <span style="color:#0366d6;">Yoobee Colleges</span> | 2020</p>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>
